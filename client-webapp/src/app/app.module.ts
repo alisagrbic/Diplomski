@@ -32,6 +32,8 @@ import { EditVehicleComponent } from './edit-vehicle/edit-vehicle.component';
 import { EditBranchComponent } from './edit-branch/edit-branch.component';
 import { NotificationService } from './notification/notification.service';
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
+import { NgxPayPalModule } from 'ngx-paypal';
+
 
 const notifierDefaultOptions: NotifierOptions = {
   position: {
@@ -190,7 +192,8 @@ const Routes= [
     FormsModule,
         HttpClientModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'}),
-    NotifierModule.withConfig(notifierDefaultOptions)
+    NotifierModule.withConfig(notifierDefaultOptions),
+    NgxPayPalModule,
   ],
   providers: [
     DemoServiceService,

@@ -25,8 +25,8 @@ export class NotificationService {
         }
     }
 
-    displayNotification(text) {
-        this.notifierService.notify('success', text);
+    displayNotification(text, error?) {
+        this.notifierService.notify(error ? 'error' : 'success', text);
     }
 
     private startConnection = () => {
