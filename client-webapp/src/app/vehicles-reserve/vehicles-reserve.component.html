@@ -1,0 +1,98 @@
+<form #f="ngForm" (ngSubmit)="ReservationData(f.value, f)">
+  <div class="box-form box-form-car">
+    <div class="box-form-item first">
+      <label for="" class="label">Mesto preuzimanja</label>
+      <div class="">
+        <div class="select-wrap">
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+          
+          <div class="select-container">   
+             <select  name="Branchoffice" class="box-routh select">           
+             <option *ngFor="let branchoffice of BranchOffices" [value]="branchoffice.BranchOfficeID" >{{branchoffice.Address}}</option>		
+             </select>             		              
+           </div>
+         
+          <i class="fa fa-caret-down" aria-hidden="true"></i>
+        </div>
+      </div>
+     </div>
+    <div class="box-form-item">
+      <label for="" class="label">Datum i vreme preuzimanja</label>
+      <div class="box-form-subitem">
+        <div class="datepicker-wrap">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          <div class="datepicker-container">
+            <input ngModel type="date" name="GetDate" id="datepicker" class="input-datepicker hasDatepicker" placeholder="IZABERITE"
+              #GetDate="ngModel">
+          </div>
+
+          <div *ngIf="GetDate.errors && (GetDate.dirty || GetDate.touched)" class="alert alert-danger">
+            <div [hidden]="!GetDate.errors.required">
+              Get date office is required!
+            </div>
+          </div>
+          <i class="fa fa-caret-down" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="box-form-subitem">
+        <div class="datepicker-wrap">
+          <i class="fa fa-clock-o" aria-hidden="true" style="padding-left:10px;"></i>
+          <div class="datepicker-container">
+            <input ngModel type="time" name="GetTime" id="vremep" class="input-timepicker" value="15:00">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box-form-item">
+      <label for="" class="label">Mesto vraćanja</label>
+      <div class="">
+        <div class="select-wrap">
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+          <div class="select-container">
+             <select name="Branchoffice1" class="box-routh select">          
+                 <option *ngFor="let branchoffice of BranchOffices"  [value]="branchoffice.BranchOfficeID">{{branchoffice.Address}}</option>	
+             </select> 
+          </div>
+          <i class="fa fa-caret-down" aria-hidden="true"></i>
+        </div>
+      </div>
+     </div>
+
+
+    <div class="box-form-item last">
+      <label for="" class="label">Datum i vreme vraćanja</label>
+      <div class="box-form-subitem">
+        <div class="datepicker-wrap">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          <div class="datepicker-container">
+            <input ngModel #ReturnDate="ngModel" type="date" name="ReturnDate" id="datepicker2" class="input-datepicker hasDatepicker"
+              placeholder="IZABERITE">
+          </div>
+
+          <div *ngIf="ReturnDate.errors && (ReturnDate.dirty || ReturnDate.touched)" class="alert alert-danger">
+            <div [hidden]="!ReturnDate.errors.required">
+              Return Date is required!
+            </div>
+          </div>
+          <i class="fa fa-caret-down" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="box-form-subitem">
+        <div class="datepicker-wrap">
+          <i class="fa fa-clock-o" aria-hidden="true" style="padding-left:10px;"></i>
+          <div class="datepicker-container">
+            <input ngModel type="time" name="ReturnTime" id="vremev" class="input-timepicker">
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div>
+        <label>Cena po satu je: {{item.Price}}</label>
+      <button class="btn btn-prime btn-box-form">Rezervišite</button>
+
+    </div>
+  </div>
+
+</form>

@@ -1,0 +1,35 @@
+
+
+<div class="container py-3">
+        <div class="row">
+            <div class="mx-auto col-sm-6">
+                        <!-- form user info -->
+                        <div class="card">
+                            <div class="card-header" style="background-color:#0b87e5;">
+                                <h4 class="mb-0"></h4>
+                            </div>
+                            <div class="card-body" style="background-color:azure">
+                                <form #f="ngForm" (ngSubmit)="OnSubmit(f.value, f)" class="form" role="form" autocomplete="off" novalidate>
+                                    <div class="form-group row"> 
+                                        <label for="FirstName" class="col-lg-3 col-form-label form-control-label">Full name:</label>
+                                        <div class="col-lg-9">{{user.FullName}}</div>
+                                    </div>  
+                                    <div class="form-group row">
+                                        <label for="UserName" class="col-lg-3 col-form-label form-control-label">Date of birthday:</label>
+                                        <div class="col-lg-9">
+                                            {{user.DateOfBirth}} 
+                                        </div>
+                                    </div>
+    
+                                    <div class="form-group row">
+                                        <label for="DocumentPhoto" class="col-lg-3 col-form-label form-control-label">DocumentPhoto:</label>
+                                        <img  height="100" width="100" src="http://localhost:51111{{user.Image}}">
+                                    </div>
+                                </form>
+                                <a class="btn btn-success btn-sm" [routerLink]="['/edit-profile']">Izmeni svoj profil</a>
+                            </div>
+                        </div>
+            </div>
+        </div>
+    </div>
+

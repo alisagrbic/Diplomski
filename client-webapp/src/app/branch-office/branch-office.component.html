@@ -1,0 +1,63 @@
+
+
+
+<div *ngIf="isManager() || isAdmin()">
+        <a [routerLink]="['/make-branch/', serviceId]">Add a branch</a>
+    </div>
+
+    <h3 class="display-4 text-center"> Branches </h3>
+    <hr class="bg-dark mb-4 w-25">
+
+<div class="mapCLass">
+        <p>
+        
+            <!-- Kreiramo mapu -->
+            <agm-map [latitude]="mapInfo.centerLat" [longitude]="mapInfo.centerLong" [zoom]="18">
+                <div *ngFor="let branch of branches">
+                    <!-- Postavljamo markere -->
+                    <agm-marker [latitude]="branch.Latitude" [longitude]="branch.Longitude" [title]="branch.Address" [label]="branch.BranchOfficeID">
+        
+                        <!-- Svakom markeru dodajemo info-window (Nije obavezno!)-->
+                        <agm-info-window [latitude]="branch.Latitude" [longitude]="branch.Longitude">
+        
+                            <!-- U info-window stavljamo html -->
+                            <br/>
+                            <span style="font-family:'Times New Roman'; color:gray;">
+                                <strong>{{branch.BranchOfficeID}}</strong>
+                            </span>
+                            <span style="font-family:'Times New Roman'; color:gray;">{{branch.Address}}</span>
+                            <a [href]="mapInfo.link">See the site.</a>
+                        </agm-info-window>
+        
+                    </agm-marker>
+                </div>
+            </agm-map>
+        
+        </p>
+        </div>
+
+
+
+<div class="container container mt-4 mb-5">
+
+
+
+    <div class="row">
+        <div class="col-md-4" *ngFor="let branch of branches">
+            <div class="card">
+                <img class="card-img-top" src="{{branch.Image}}" alt="Card image cap">
+                <div class="card-block p-3">
+                    <h4 class="card-title" name="Address">Address: {{branch.Address}}</h4>
+                    <p class="card-text" name="Latitude">Latitude: {{branch.Latitude}}</p>
+                    <p class="card-text" name="Longitude">Longitude: {{branch.Longitude}}</p>
+                    <div *ngIf="activeUserId == branch.CreatorID">
+                        <button class="btn" (click)="deleteBranch(branch.BranchOfficeID)">Clear branch</button>
+                        <a [routerLink]="['/edit-branch/', branch.BranchOfficeID]">Change the branch</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

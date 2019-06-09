@@ -1,0 +1,126 @@
+<div class="container py-3">
+		<div class="row">
+			<div class="mx-auto col-sm-6">
+				<!-- form user info -->
+				<div class="card">
+					<div class="card-header" style="background-color:#0b87e5;">
+						<h4 class="mb-0"></h4>
+					</div>
+					<div class="card-body" style="background-color:azure">	
+
+
+
+      <header class="card-header">
+        <a [routerLink]="['/login']" class="float-right btn btn-outline-primary mt-1">Log in</a>
+        <h4 class="card-title mt-2">Sign up</h4>
+      </header>
+      <article class="card-body">
+
+        <form #f="ngForm" (ngSubmit)="onSubmit(f.value, f)" ngNativeForm>
+          <div class="form-row">
+            <div class="col form-group">
+              <label>Full name </label>
+              <input type="text" class="form-control" name="fullName" ngModel #fullName="ngModel" required>
+            </div>
+          </div>
+          <div *ngIf="fullName.errors && (fullName.dirty || fullName.touched)" class="alert alert-danger">
+              <div [hidden]="!fullName.errors.required">
+                Full name is required!
+              </div>
+              <div [hidden]="!fullName.errors.minlength">
+                Full name must be at least 5 characters long.
+              </div>
+              <div [hidden]="!fullName.errors.maxlength">
+                Full name cannot be more than 42 characters long.
+              </div>
+            </div>
+          <div class="form-group">
+            <label>Email address</label>
+            <input type="email" class="form-control" name="email" ngModel #email="ngModel" required>
+            <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+              <div [hidden]="!email.errors.required">
+                Email is required!
+              </div>
+              <div [hidden]="!email.errors.minlength">
+                  Email must be at least 5 characters long.
+              </div>
+              <div [hidden]="!email.errors.maxlength">
+                  Email cannot be more than 42 characters long.
+              </div>
+            </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Date Of Birth</label>
+              <div class='input-group date' id='datetimepicker1'>
+                <input type="date" class="form-control" name="dateOfBirth" ngModel #dateOfBirth="ngModel"/>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="dateOfBirth.errors && (dateOfBirth.dirty || dateOfBirth.touched)" class="alert alert-danger">
+              <div [hidden]="!dateOfBirth.errors.required">
+                Email is required!
+              </div>
+              <div [hidden]="!dateOfBirth.errors.minlength">
+                  Email must be at least 5 characters long.
+              </div>
+              <div [hidden]="!dateOfBirth.errors.maxlength">
+                  Email cannot be more than 42 characters long.
+              </div>
+            </div>
+
+        <div class="form-group">
+            <label>Role</label>
+            <div *ngFor="let role of roles">
+              <input name="role" type="radio" [value]="role" for="role" [(ngModel)]="selectedRole" ngModel required/>
+              <label>{{role}}</label>
+            </div>
+          </div>
+      
+          <div class="form-group">
+            <label>Create password</label>
+            <input class="form-control" type="password" name="password" ngModel #password="ngModel" required>
+          </div>
+          <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger">
+              <div [hidden]="!password.errors.required">
+            <label>Create password</label>
+              Password is required!
+              </div>
+              <div [hidden]="!password.errors.minlength">
+                  Password must be at least 5 characters long.
+              </div>
+              <div [hidden]="!password.errors.maxlength">
+                  Password cannot be more than 42 characters long.
+              </div>
+            </div>
+
+          <div class="form-group">
+            <label>Confirm password</label>
+            <input class="form-control" type="password" name="confirmPassword" ngModel #confirmPassword="ngModel" required>
+          </div>
+          <div *ngIf="confirmPassword.errors && (confirmPassword.dirty || confirmPassword.touched)" class="alert alert-danger">
+              <div [hidden]="!confirmPassword.errors.required">
+                  ConfirmPassword is required!
+              </div>
+              <div [hidden]="!confirmPassword.errors.minlength">
+                  ConfirmPassword must be at least 5 characters long.
+              </div>
+              <div [hidden]="!confirmPassword.errors.maxlength">
+                  ConfirmPassword cannot be more than 42 characters long.
+              </div>
+            </div>
+          <div class="form-group">
+            <input type="submit" [disabled]="!f.valid" value="Register" class="btn btn-primary btn-block" />
+            <!--   <button type="submit" class="btn btn-primary btn-block"> Register </button> -->
+          </div>
+
+          <small class="text-muted">By clicking the 'Sign Up' button, you confirm that you accept our
+            <br> Terms of use and Privacy Policy.</small>
+        </form>
+      </article>
+</div>
+</div>
+</div>
+
+</div>

@@ -1,0 +1,50 @@
+<div *ngIf="isManager() || isAdmin()">
+    <a [routerLink]="['/make-service']">Add new service</a>
+</div>
+
+<div class="container container mt-4 mb-5">
+    <h3 class="display-4 text-center"> Services </h3>
+    <hr class="bg-dark mb-4 w-25">
+
+    <div class="row">
+        <div class="col-md-4" *ngFor="let serv of services">
+            <div class="card">
+                <img class="card-img-top" src="{{serv.Logo}}" alt="Card image cap">
+                <div class="card-block p-3">
+                    <h4 class="card-title" name="Name">{{serv.Name}}</h4>
+                    <p class="card-text" name="Description">{{serv.Description}}</p>
+                    <a [routerLink]="['/services/', serv.Id]" class="btn btn-primary rounded-0 mb-2">Vehicles</a>
+                    <a [routerLink]="['/branches/', serv.Id]" class="btn btn-primary rounded-0 mb-2">Branch Offices</a>
+                
+                    <div *ngIf="serv.CreatorID == activeUser">
+                    <button class="btn" id="btnTrash">
+                        <i class="fa fa-trash" (click)="deleteService(serv.Id)"></i>
+                    </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+      
+    <div *ngIf="isAdmin()" class="row">
+        <h3 class="display-4 text-center"> Approve services: </h3>
+        <div class="col-md-4" *ngFor="let service of servicesForAdmin">
+            <div class="card">
+                <img class="card-img-top" src="{{service.Logo}}" alt="Card image cap">
+                <div class="card-block p-3">
+                    <h4 class="card-title" name="Name">{{service.Name}}</h4>
+                    <p class="card-text" name="Description">{{service.Description}}</p>
+                    <a [routerLink]="['/services/', service.Id]" class="btn btn-primary rounded-0 mb-2">Vehicles</a>
+                    <a [routerLink]="['/branches/', service.Id]" class="btn btn-primary rounded-0 mb-2">Branch Offices</a>
+
+                    <div>
+                        <input (click)="ApprovedService(service.Id)" value="Approve" type="submit" class="btn btn-success" />
+                        <input (click)="DenyService(service.Id)" value="Deny" type="submit" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

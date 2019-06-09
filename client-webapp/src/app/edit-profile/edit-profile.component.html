@@ -1,0 +1,69 @@
+<div class="container py-3">
+    <div class="row">
+        <div class="mx-auto col-sm-6">
+            <!-- form user info -->
+            <div class="card">
+                <div class="card-header" style="background-color:#0b87e5;">
+                    <h4 class="mb-0"></h4>
+                </div>
+                <div class="card-body" style="background-color:azure">
+                    <form #updateProfile="ngForm" (ngSubmit)="onSubmit(updateProfile.Value, updateProfile)">
+                        <div class="row">
+                            <div class="offset-lg-4 col-lg-4 col-sm-6 col-12 main-section text-center">
+                                <div class="row">
+                                    <div class="col-lg-12 col-sm-12 col-12 profile-header"></div>
+                                </div>
+                                <div class="row user-detail">
+                                    <div class="col-lg-12 col-sm-12 col-12">
+                                        <div>
+                                            <img [src]="url" class="rounded-circle img-thumbnail">
+                                        </div>
+                                        <div class="form-group row"> 
+                                            <label>Full name: </label>
+                                            <div>
+                                            <input type="text" id="lname" name="FullName" #FullName="ngModel"
+                                                [(ngModel)]="activeUser.FullName">
+                                        </div>
+                                        </div>
+                                        <div *ngIf="FullName.errors && (FullName.dirty || FullName.touched)"
+                                            class="alert alert-danger">
+                                            <div [hidden]="!FullName.errors.required">
+                                                Full Name is required!
+                                            </div>
+                                            <div [hidden]="!FullName.errors.minlength">
+                                                Full Name must be at least 5 characters long.
+                                            </div>
+                                            <div [hidden]="!FullName.errors.maxlength">
+                                                Full Name cannot be more than 42 characters long.
+                                            </div>
+                                        </div>
+                                        <div class="form-group row"> 
+                                        <label>Date of birth: </label>
+                                        <input type="text" id="lname" name="DateOfBirth" #DateOfBirth="ngModel"
+                                            [(ngModel)]="activeUser.DateOfBirth">
+                                        </div>
+                                        <div *ngIf="DateOfBirth.errors && (DateOfBirth.dirty || DateOfBirth.touched)"
+                                            class="alert alert-danger">
+                                            <div [hidden]="!DateOfBirth.errors.required">
+                                                Date Of Birth is required!
+                                            </div>
+                                        </div>
+                                        <div>
+                                        <input type='file' (change)="onSelectFile($event)" id="lname" name="url" placeholder="Logo.." ngModel>
+                                    </div>
+                                    </div>
+                                </div>
+                               <div>
+                                <input class="btn btn-primary" type="submit" value="Save">
+                            </div>
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

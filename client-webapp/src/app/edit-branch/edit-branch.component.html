@@ -1,0 +1,54 @@
+<div class="container py-3">
+    <div class="row">
+        <div class="mx-auto col-sm-6">
+            <!-- form user info -->
+            <div class="card">
+                <div class="card-header" style="background-color:#0b87e5;">
+                    <h4 class="mb-0"></h4>
+                </div>
+                <div class="card-body" style="background-color:azure">
+
+
+                    <div class="container">
+                        <form #editBranch="ngForm" (ngSubmit)="onSubmit(editBranch.value, editBranch)">
+
+                            <label for="fname">Address</label>
+                            <input type="text" name="Address" [(ngModel)]="activeBranch.Address">
+
+                            <div *ngIf="DateOfBirth.errors && (DateOfBirth.dirty || DateOfBirth.touched)"
+                                class="alert alert-danger">
+                                <div [hidden]="!DateOfBirth.errors.required">
+                                    Date Of Birth is required!
+                                </div>
+                            </div>
+                            <label for="lname">Image</label>
+                            <br>
+                            <img [src]="activeBranch.Image" height="200">
+                            <br>
+                            <br>
+                            <label for="lname">Latitude</label>
+                            <input type="text" name="Latitude" [(ngModel)]="activeBranch.Latitude" #Latitude="ngModel">
+                            <div *ngIf="Latitude.errors && (Latitude.dirty || Latitude.touched)"
+                                class="alert alert-danger">
+                                <div [hidden]="!Latitude.errors.required">
+                                    Latitude is required!
+                                </div>
+                            </div>
+                            <label for="subject">Longitude</label>
+                            <input type="text" name="Longitude" [(ngModel)]="activeBranch.Longitude"
+                                #Longitude="ngModel">
+
+                            <div *ngIf="Longitude.errors && (Longitude.dirty || Longitude.touched)"
+                                class="alert alert-danger">
+                                <div [hidden]="!Longitude.errors.required">
+                                    Longitude is required!
+                                </div>
+                            </div>
+                            <input class="btn btn-primary" type="submit" value="Save">
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

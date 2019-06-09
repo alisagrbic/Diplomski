@@ -1,0 +1,31 @@
+<div class="container py-3">
+		<div class="row">
+			<div class="mx-auto col-sm-6">
+				<!-- form user info -->
+				<div class="card">
+					<div class="card-header" style="background-color:#0b87e5;">
+						<h4 class="mb-0"></h4>
+					</div>
+					<div class="card-body" style="background-color:azure">	
+
+<div class="text-center">
+	<form class="form-signin" #login="ngForm" (ngSubmit)="logIn(login.value, login)">
+		<img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+		<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+		<label for="inputEmail" class="sr-only">Email address</label>
+		<input type="email" id="inputEmail" name="username" class="form-control" placeholder="Email address" required autofocus="" ngModel>
+	
+		<label for="inputPassword" class="sr-only">Password</label>
+		<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required ngModel>
+		<div class="checkbox mb-3">
+			<label>
+			<input type="checkbox" value="remember-me"> Remember me
+			</label>
+		</div>
+		<input type="submit" [disabled]="!login.valid" class="btn btn-lg btn-primary btn-block" value="Sign in"/>
+		</form>
+</div>
+</div>
+</div>
+</div>
+</div>

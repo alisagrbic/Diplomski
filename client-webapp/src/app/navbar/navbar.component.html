@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <a class="navbar-brand" [routerLink]="['/home']">HOME</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExample02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/services']">Services
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <div *ngIf="!loggedIn">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/login']">Login</a>
+        </li>
+      </div>
+      <div *ngIf="!loggedIn">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/register']">Registration</a>
+        </li>
+      </div>
+    </ul>
+    <div *ngIf="loggedIn">
+      <form class="form-inline my-2 my-md-0">
+        <a class="nav-link" [routerLink]="['/profile']">My profile</a>
+      </form>
+    </div>
+    <div *ngIf="loggedIn">
+      <form class="form-inline my-2 my-md-0" (ngSubmit)="logOut()">
+        <input type="submit" value="Logout">
+      </form>
+    </div>
+  </div>
+</nav>
+<button (click)="notification()">new notification</button>

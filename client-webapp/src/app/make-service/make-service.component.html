@@ -1,0 +1,59 @@
+<div class="container py-3">
+  <div class="row">
+    <div class="mx-auto col-sm-6">
+      <!-- form user info -->
+      <div class="card">
+        <div class="card-header" style="background-color:#0b87e5;">
+          <h4 class="mb-0"></h4>
+        </div>
+        <div class="card-body" style="background-color:azure">
+          <form #makeService="ngForm" (ngSubmit)="onSubmit(makeService.value, makeService)">
+
+            <label for="fname">Name</label>
+            <input type="text" id="fname" name="Name" placeholder="Name.." ngModel #Name="ngModel">
+            <div *ngIf="Name.errors && (Name.dirty || Name.touched)" class="alert alert-danger">
+              <div [hidden]="!Name.errors.required">
+                Name is required!
+              </div>
+              <div [hidden]="!Name.errors.minlength">
+                Name must be at least 5 characters long.
+              </div>
+              <div [hidden]="!Name.errors.maxlength">
+                Name cannot be more than 42 characters long.
+              </div>
+            </div>
+
+            <label for="lname">Logo</label>
+            <br>
+            <input type='file' (change)="onSelectFile($event)" id="lname" name="Logo" placeholder="Logo.." ngModel>
+            <img [src]="url" height="200">
+            <br>
+            <br>
+
+            <label for="lname">E-mail</label>
+            <input type="text" id="lname" name="Email" placeholder="E-mail.." ngModel #Email="ngModel">
+
+            <div *ngIf="Email.errors && (Email.dirty || Email.touched)" class="alert alert-danger">
+              <div [hidden]="!Email.errors.required">
+                Email is required!
+              </div>
+              <div [hidden]="!Email.errors.minlength">
+                Email must be at least 5 characters long.
+              </div>
+              <div [hidden]="!Email.errors.maxlength">
+                Email cannot be more than 42 characters long.
+              </div>
+            </div>
+
+            <label for="subject">Description</label>
+            <textarea type="text" id="subject" name="Description" placeholder="Write something about service.."
+              style="height:200px" ngModel></textarea>
+
+            <input class="btn btn-primary" type="submit" [disabled]="!makeService.valid" value="Save">
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

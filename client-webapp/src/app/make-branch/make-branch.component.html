@@ -1,0 +1,79 @@
+<div class="container py-3">
+    <div class="row">
+        <div class="mx-auto col-sm-6">
+            <!-- form user info -->
+            <div class="card">
+                <div class="card-header" style="background-color:#0b87e5;">
+                    <h4 class="mb-0"></h4>
+                </div>
+                <div class="card-body" style="background-color:azure">
+
+
+<div class="container">
+  <form #makeBranch="ngForm" (ngSubmit)="onSubmit(makeBranch.value, makeBranch)">
+
+    <label for="fname">Address:  </label>
+    <input type="text" name="Address" placeholder="Address.." ngModel #Address="ngModel">
+    <div *ngIf="Address.errors && (Address.dirty || Address.touched)" class="alert alert-danger">
+        <div [hidden]="!Address.errors.required">
+            Address is required!
+        </div>
+        <div [hidden]="!Address.errors.minlength">
+            Address must be at least 5 characters long.
+        </div>
+        <div [hidden]="!Address.errors.maxlength">
+            Address cannot be more than 42 characters long.
+        </div>
+      </div><br>
+    <label for="lname">Image</label>
+    <input type='file' (change)="onSelectFile($event)" name="image" placeholder="Image.." ngModel>
+    <img [src]="url" height="200">
+    <br>
+    <br>
+
+    <label for="lname">Latitude</label>
+    <input type="text" name="Latitude" placeholder="Latitude.." [(ngModel)]="latNum" #Latitude="ngModel">
+
+    <div *ngIf="Latitude.errors && (Latitude.dirty || Latitude.touched)" class="alert alert-danger">
+        <div [hidden]="!Latitude.errors.required">
+            Latitude is required!
+        </div>
+      </div>
+<br>
+    <label for="subject">Longitude</label>
+    <input type="text" name="Longitude" placeholder="Longitude.." [(ngModel)]="lngNum" #Longitude="ngModel">
+
+    <div *ngIf="Longitude.errors && (Longitude.dirty || Longitude.touched)" class="alert alert-danger">
+        <div [hidden]="!Longitude.errors.required">
+            Longitude is required!
+        </div>
+       </div>
+       <br>
+    <input class="btn btn-primary" type="submit" [disabled]="!makeBranch.valid" value="Save">
+
+  </form>
+</div>
+</div>
+</div>
+</div>
+    <!-- Kreiramo mapu -->
+   <agm-map [latitude]="mapInfo.centerLat" [longitude]="mapInfo.centerLong" [zoom]="18" (mapClick)="placeMarker($event)">
+    
+     <!-- Postavljamo markere -->
+     <agm-marker [latitude]="latNum" [longitude]="lngNum" [title]="mapInfo.title"
+     [label]="mapInfo.label">
+ 
+       <!-- Svakom markeru dodajemo info-window (Nije obavezno!)-->
+       <agm-info-window [latitude]="mapInfo.centerLat" [longitude]="mapInfo.centerLong" >
+ 
+         <!-- U info-window stavljamo html -->
+         <span style="font-size: 16px;font-family:'Times New Roman'">Fakultet tehničkih nauka</span>
+         <br/>
+         <span style="font-family:'Times New Roman'; color:gray;"><strong>Jugodrvo</strong></span>
+         <span style="font-family:'Times New Roman'; color:gray;">Bulevar oslobođenja 131</span>
+         <a [href]="mapInfo.link">See the site.</a>
+       </agm-info-window>
+ 
+     </agm-marker>
+   </agm-map>
+  </div>

@@ -1,0 +1,91 @@
+<div class="container py-3">
+  <div class="row">
+    <div class="mx-auto col-sm-6">
+      <!-- form user info -->
+      <div class="card">
+        <div class="card-header" style="background-color:#0b87e5;">
+          <h4 class="mb-0"></h4>
+        </div>
+        <div class="card-body" style="background-color:azure">
+<div class="container">
+  <form #editVehicle="ngForm" (ngSubmit)="onSubmit(editVehicle.value, editVehicle)">
+    <label for="fname">Model</label>
+    <input type="text" name="Model" placeholder="Model.." [(ngModel)]="activeVehicle.Model" #Model="ngModel" />
+    <div *ngIf="Model.errors && (Model.dirty || Model.touched)" class="alert alert-danger">
+      <div [hidden]="!Model.errors.required">
+        Model is required!
+      </div>
+      <div [hidden]="!Model.errors.minlength">
+        Model must be at least 5 characters long.
+      </div>
+      <div [hidden]="!Model.errors.maxlength">
+        Model cannot be more than 42 characters long.
+      </div>
+    </div>
+
+    <label for="TypeId">Type</label>
+    <div class="select-container">
+      <select name="VehicleTypeId" [(ngModel)]="activeVehicle.VehicleTypeId" #VehicleTypeId="ngModel">
+        <option selected>Vehicle Type</option>
+        <option *ngFor="let type of types" name="VehicleTypeId" [value]="type.VehicleTypeId">{{type.VehicleName}}</option>
+      </select>
+    </div>
+    <div *ngIf="VehicleTypeId.errors && (VehicleTypeId.dirty || VehicleTypeId.touched)" class="alert alert-danger">
+      <div [hidden]="!Model.errors.required">
+        Type is required!
+      </div>
+    </div>
+    <label for="lname">Image</label>
+    <br>
+    <img [src]="activeVehicle.Image" height="200">
+    <br>
+    <br>
+
+    <div class="form-group" *ngIf="isManager()">
+      <label>Available</label>
+      <div *ngFor="let yes of yesNo">
+        <input name="yes" type="radio" [value]="yes" for="yes" [(ngModel)]="available" />
+        <label>{{yes}}</label>
+      </div>
+    </div>
+
+    <label for="lname">Producer</label>
+    <input type="text" name="Producer" placeholder="Producer.." [(ngModel)]="activeVehicle.Producer" #Producer="ngModel">
+    <div *ngIf="Producer.errors && (Producer.dirty || Producer.touched)" class="alert alert-danger">
+      <div [hidden]="!Producer.errors.required">
+        Producer is required!
+      </div>
+      <div [hidden]="!Producer.errors.minlength">
+        Producer must be at least 5 characters long.
+      </div>
+      <div [hidden]="!Producer.errors.maxlength">
+        Producer cannot be more than 42 characters long.
+      </div>
+    </div>
+
+    <label for="Type">Year Of Produce</label>
+    <div class="select-container">
+      <select name="ProductionYear" class="box-routh select" [(ngModel)]="activeVehicle.ProductionYear" #ProductionYear="ngModel">
+        <option selected>Production Year</option>
+        <option *ngFor="let year of years" [value]="year">{{year}}</option>
+      </select>
+    </div>
+
+    <div *ngIf="ProductionYear.errors && (ProductionYear.dirty || ProductionYear.touched)" class="alert alert-danger">
+      <div [hidden]="!ProductionYear.errors.required">
+        Production Year is required!
+      </div>
+    </div>
+
+    <label for="subject">Description</label>
+    <textarea type="text" id="subject" name="Description" placeholder="Write something about vehicle.." style="height:200px"
+      [(ngModel)]="activeVehicle.Description"></textarea>
+
+    <input type="submit" value="Save">
+
+  </form>
+</div>
+</div>
+</div>
+</div>
+</div>
