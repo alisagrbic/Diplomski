@@ -21,6 +21,7 @@ using System.Data.Entity.Migrations;
 
 namespace RentApp.Controllers
 {
+    [System.Web.Mvc.RequireHttps]
     public class ServicesController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;

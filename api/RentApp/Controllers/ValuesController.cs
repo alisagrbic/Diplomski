@@ -7,6 +7,7 @@ using System.Web.Http;
 
 namespace RentApp.Controllers
 {
+    [System.Web.Mvc.RequireHttps]
     [Authorize(Roles = "Admin")]
     public class ValuesController : ApiController
     {

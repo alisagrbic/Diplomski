@@ -13,7 +13,6 @@ using Unity.Attributes;
 namespace RentApp.Hubs
 {
     [HubName("notifications")]
-    [Authorize(Roles ="Admin")]
     public class NotificationHub : Hub
     {
         private static IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<NotificationHub>();
@@ -31,10 +30,12 @@ namespace RentApp.Hubs
             Clients.All.hello("Hello from server");
         }
 
-        public static void Notify(int clickCount)
+        public static void Notify(string message)
         {
-            hubContext.Clients.Group("Admins").clickNotification($"Clicks: {clickCount}");
-        }
+            hubContext.Clients.All.notification(message);
+
+
+        } 
 
         public void GetTime()
         {
@@ -61,8 +62,9 @@ namespace RentApp.Hubs
         public override Task OnConnected()
         {
             //Ako vam treba pojedinacni User
-            var identityName = Context.User.Identity.Name;
+       //     var identityName = Context.User.Identity.Name;
 
+          //  Groups.Add(Context.ConnectionId, $"PersonalGroup{Context.User.Identity.Name}");
             Groups.Add(Context.ConnectionId, "Admins");
 
             //if (Context.User.IsInRole("Admin"))

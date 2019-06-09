@@ -17,6 +17,7 @@ using RentApp.Providers;
 using RentApp.Persistance;
 using Microsoft.Owin.Security.DataProtection;
 using System.Web.Mvc;
+using System.Web.Http.Cors;
 
 namespace RentApp
 {
@@ -33,6 +34,13 @@ namespace RentApp
             ConfigureOAuthTokenConsumption(app);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
             DataProtectionProvider = app.GetDataProtectionProvider();
+
+            var httpConfig = new HttpConfiguration();
+
+            //change this configuration as you want.
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            httpConfig.EnableCors(cors);
+            app.MapSignalR();
         }
 
         private void ConfigureOAuthTokenGeneration(IAppBuilder app)

@@ -14,6 +14,7 @@ using System.Web.Http.Description;
 
 namespace RentApp.Controllers
 {
+    [System.Web.Mvc.RequireHttps]
     public class VehicleController : ApiController
     {
 

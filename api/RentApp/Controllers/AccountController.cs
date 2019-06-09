@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
+using RentApp.Hubs;
 using RentApp.Models;
 using RentApp.Models.Entities;
 using RentApp.Providers;
@@ -23,6 +24,7 @@ namespace RentApp.Controllers
 
     [Authorize]
     [RoutePrefix("api/Account")]
+    [System.Web.Mvc.RequireHttps]
     public class AccountController : ApiController
     {
         private const string LocalLoginProvider = "Local";
@@ -209,6 +211,17 @@ namespace RentApp.Controllers
             }
 
             return Ok();
+        }
+
+        // GET api/Account/TestSignalR
+        [OverrideAuthentication]
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("TestSignalR", Name = "TestSignalR")]
+        public async Task<IHttpActionResult> TestSignalR()
+        {
+            NotificationHub.Notify("Novi sevis za odobravanje");
+            return Ok("Done");
         }
 
         // GET api/Account/ExternalLogin

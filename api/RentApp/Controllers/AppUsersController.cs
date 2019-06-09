@@ -15,6 +15,7 @@ using System.Web.Http.Description;
 
 namespace RentApp.Controllers
 {
+        [System.Web.Mvc.RequireHttps]
     public class AppUsersController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;

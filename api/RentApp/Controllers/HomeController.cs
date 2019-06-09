@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace RentApp.Controllers
 {
+    [System.Web.Mvc.RequireHttps]
     public class HomeController : Controller
     {
         public ActionResult Index()
